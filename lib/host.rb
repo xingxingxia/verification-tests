@@ -794,6 +794,9 @@ module BushSlicer
           key_str = "-i #{Host.localhost.shell_escape(expand_private_path(bastion_key))}"
         end
         self[:ssh_proxy] = "ssh -W %h:%p #{key_str} #{bastion_connect_str}"
+        print "Printing bastion_connect_str: ", bastion_connect_str
+        print "Printing self[:ssh_proxy]: ", self[:ssh_proxy]
+
         # https://github.com/net-ssh/net-ssh/issues/653 jump lacks key setup
         # self[:ssh_jump] = bastion_connect_str
       elsif self[:flags] and !self[:flags].empty?

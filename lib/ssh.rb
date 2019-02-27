@@ -226,6 +226,9 @@ module BushSlicer
 
         @user = opts[:user] # can be nil for default username
         conn_opts = {keepalive: true}
+        print "opts[:jump]: ", opts[:jump], "\n"
+        print "opts[:proxy]: ", opts[:proxy], "\n"
+        print "conn_opts[:proxy]: ", conn_opts[:proxy], "\n"
         if opts[:jump]
           conn_opts[:proxy] = Net::SSH::Proxy::Jump.new(opts[:jump])
         elsif opts[:proxy]
@@ -248,6 +251,10 @@ module BushSlicer
           #raise Net::SSH::AuthenticationFailed
         end
         begin
+          puts "Printing before ssh:"
+          print "host: ", host, "\n"
+          print "user: ", user, "\n"
+          print "conn_opts: ", conn_opts, "\n"
           @session = Net::SSH.start(host, user, **conn_opts)
         rescue Net::SSH::HostKeyMismatch => e
           raise e if opts[:strict]
