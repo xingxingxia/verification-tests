@@ -51,6 +51,9 @@ module BushSlicer
     def run(cmd_key, options)
       cmd_options, exec_options = self.class.split_exec_options(options)
       cmd = build_command_line(cmd_key, cmd_options)
+      print "In rules_command_executor.rb::run, cmd is ", cmd, "\n"
+      print "In rules_command_executor.rb::run, cmd_options is ", cmd_options, "\n"
+      print "In rules_command_executor.rb::run, exec_options is ", exec_options, "\n"
       res = host.exec_as(@user, cmd, stderr: :stderr, **exec_options)
 
       rules_execution_result_processor = proc {
