@@ -42,6 +42,7 @@ module BushSlicer
         logger.info(log_text) unless opts[:quiet]
       end
 
+      print "In local_process.rb::initialize, cmd is ", cmd, "\n"
       spawn
     end
 
@@ -239,6 +240,7 @@ module BushSlicer
               "#{result[:stderr]}"
           end
 
+          print "In local_process.rb::finished?, cmd is ", cmd, "\n"
           unless opts[:quiet]
             logger.plain(result[:response], false)
             logger.info("Exit Status: #{result[:exitstatus]}")
